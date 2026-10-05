@@ -7,6 +7,8 @@ FurryCat32_IITRoorkee.pptx
 generate_deck.py
 inspect_shapes.py
 presentation_preview.html
+build_detailed_10_slide_deck.py
+detailed_presentation_preview.html
 
 # Python
 __pycache__/
