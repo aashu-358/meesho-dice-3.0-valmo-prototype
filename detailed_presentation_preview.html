@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meesho DICE Challenge 3.0 — Round 2 Detailed Submission (10-Slide Deck)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --meesho-purple: #3B0B34;
+      --meesho-deep-purple: #54114B;
+      --meesho-magenta: #F43397;
+      --meesho-dark-pink: #C21870;
+      --accent-orange: #F59E0B;
+      --accent-amber: #D97706;
+      --text-dark: #0F172A;
+      --text-slate: #334155;
+      --text-muted: #64748B;
+      --border-light: #E2E8F0;
+      --bg-cream: #FAF5EE;
+      --card-white: #FFFFFF;
+      --success-green: #059669;
+      --danger-red: #DC2626;
+      --badge-purple-bg: #F8F0F8;
+      --badge-amber-bg: #FFFBEC;
+      --badge-green-bg: #F0FDF4;
+      --badge-blue-bg: #EEF2FF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0b0f17;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Top Navigation Toolbar */
+    .toolbar {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #161b26;
+      border: 1px solid #283347;
+      border-radius: 12px;
+      padding: 12px 24px;
+      margin-bottom: 24px;
+      color: #fff;
+      position: sticky;
+      top: 10px;
+      z-index: 1000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .toolbar-title {
+      font-weight: 700;
+      font-size: 14.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-pill {
+      background: var(--meesho-magenta);
+      color: white;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: #222B3D;
+      border: 1px solid #374660;
+      color: #E2E8F0;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn:hover {
+      background: var(--meesho-magenta);
+      border-color: var(--meesho-magenta);
+      color: #fff;
+    }
+
+    .slide-counter {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      min-width: 100px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Slides Deck Container */
+    .deck-container {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Individual Slide Canvas (16:9 Widescreen) */
+    .slide-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-cream);
+      border-radius: 16px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Official Slide Banner Header */
+    .slide-banner {
+      height: 13%;
+      background: white;
+      border-bottom: 2px solid #F1E5D8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .dice-logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      font-size: 18px;
+      color: #FF8A00;
+      letter-spacing: -0.5px;
+    }
+
+    .dice-logo-badge span.rocket {
+      font-size: 20px;
+    }
+
+    .dice-logo-badge span.dice-text {
+      color: #E22A7F;
+      font-style: italic;
+    }
+
+    .meesho-logo-img {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--meesho-purple);
+      color: white;
+      font-weight: 800;
+      font-size: 20px;
+      padding: 0 14px;
+      border-radius: 8px;
+    }
+
+    /* Slide Content Body */
+    .slide-body {
+      flex: 1;
+      padding: 22px 38px 26px 38px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-title-block {
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .slide-tag {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--meesho-magenta);
+      margin-bottom: 3px;
+    }
+
+    .slide-heading {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--meesho-purple);
+      line-height: 1.2;
+    }
+
+    .slide-subheading {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Layout Grids */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-asym-1-2 {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 18px;
+    }
+
+    .grid-asym-2-1 {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 18px;
+    }
+
+    /* Cards & Containers */
+    .card {
+      background: var(--card-white);
+      border-radius: 10px;
+      border: 1px solid var(--border-light);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+    }
+
+    .kpi-card {
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-light);
+    }
+
+    .kpi-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .kpi-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.1;
+      margin-bottom: 3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .kpi-sub {
+      font-size: 10.5px;
+      color: var(--text-slate);
+      font-weight: 500;
+    }
+
+    .root-card {
+      border-top: 4px solid var(--meesho-magenta);
+      height: 100%;
+    }
+
+    .root-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--meesho-purple);
+      margin-bottom: 2px;
+    }
+
+    .root-size {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--danger-red);
+      margin-bottom: 8px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-slate);
+      line-height: 1.35;
+      flex: 1;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      color: var(--meesho-magenta);
+      font-weight: bold;
+    }
+
+    .metric-badge-box {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent-amber);
+      background: var(--badge-amber-bg);
+      padding: 5px 9px;
+      border-radius: 5px;
+      border-left: 3px solid var(--accent-orange);
+      margin-top: 8px;
+    }
+
+    .callout-strip {
+      margin-top: 14px;
+      background: var(--badge-purple-bg);
+      border: 1.5px solid var(--meesho-magenta);
+      border-radius: 10px;
+      padding: 10px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .callout-strip-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--meesho-magenta);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      font-size: 10.5px;
+      color: var(--text-slate);
+      line-height: 1.3;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .data-table th {
+      background: var(--meesho-purple);
+      color: white;
+      font-weight: 700;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 10.5px;
+    }
+
+    .data-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #edf2f7;
+      color: var(--text-slate);
+      line-height: 1.25;
+    }
+
+    .data-table tr.highlight-row {
+      background: #FDF2F8;
+      font-weight: 600;
+    }
+
+    .data-table tr.highlight-row td {
+      color: var(--meesho-purple);
+    }
+
+    .rank-pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 9.5px;
+    }
+
+    .rank-p0 {
+      background: #DCFCE7;
+      color: #15803D;
+    }
+
+    .rank-p1 {
+      background: #FEF3C7;
+      color: #B45309;
+    }
+
+    /* Print & Export Rules */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .toolbar {
+        display: none;
+      }
+      .deck-container {
+        gap: 0;
+      }
+      .slide-wrapper {
+        page-break-after: always;
+        box-shadow: none;
+        border-radius: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-title">
+      <span>Meesho DICE Challenge 3.0</span>
+      <span class="badge-pill">Round 2 Detailed Submission</span>
+      <span style="color:#94a3b8; font-size:13px; font-weight:400;">Track: ValMo Logistics (Reducing RTO)</span>
+    </div>
+    <div class="nav-controls">
+      <span class="slide-counter" id="counter">Slide 1 of 10</span>
+      <button class="nav-btn" onclick="prevSlide()">◀ Prev</button>
+      <button class="nav-btn" onclick="nextSlide()">Next ▶</button>
+      <a class="nav-btn" href="valmo_smartattempt_prototype.html" target="_blank" style="background:#059669; border-color:#059669;">
+        <span>🎮</span> Launch Prototype
+      </a>
+      <button class="nav-btn" onclick="window.print()">Print / Export PDF</button>
+    </div>
+  </div>
+
+  <div class="deck-container">
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 1: COVER SLIDE -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-1">
+      <div style="width:100%; height:100%; background:linear-gradient(135deg, #3B0B34 0%, #54114B 40%, #20041B 100%); display:flex; justify-content:center; align-items:center; padding:40px;">
+        <div style="background:white; width:88%; max-width:1000px; border-radius:20px; border:3px solid var(--meesho-magenta); padding:36px 48px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.6); text-align:center;">
+          <div style="display:inline-block; background:var(--meesho-magenta); color:white; font-weight:800; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; padding:6px 18px; border-radius:20px; margin-bottom:14px;">
+            MEESHO DICE CHALLENGE 3.0  •  DETAILED SUBMISSION ROUND
+          </div>
+          <h1 style="font-size:34px; font-weight:900; color:var(--meesho-purple); line-height:1.15; margin-bottom:6px;">
+            PROJECT NIRMAN: ZERO-LEAKAGE LAST MILE
+          </h1>
+          <p style="font-size:16px; font-weight:600; color:var(--text-slate); margin-bottom:20px;">
+            A Data-Driven Engineering & Hyperlocal Strategy to Reduce RTO & Monetize Refused Inventory on ValMo
+          </p>
+
+          <div style="background:#FFFBEB; border:1.5px solid #F59E0B; border-radius:10px; padding:10px 24px; font-size:14px; font-weight:800; color:#B45309; display:inline-block; margin-bottom:22px;">
+            SELECTED TRACK: VALMO LOGISTICS (REDUCING RTO)
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; text-align:left; border-top:1px solid #E2E8F0; padding-top:20px;">
+            <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+              <strong style="display:block; color:var(--meesho-purple); margin-bottom:2px; font-size:11.5px;">1. Quantitative Diagnosis</strong>
+              Unbundling the ₹3,485 Cr annual RTO bleed across 1.2B shipments using Meesho's explicit data pack.
+            </div>
+            <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+              <strong style="display:block; color:var(--meesho-purple); margin-bottom:2px; font-size:11.5px;">2. ValMo SmartAttempt™</strong>
+              Pre-dispatch WhatsApp concierge, Truecaller verified telephony, & 150m geo-fence anti-ghost guard.
+            </div>
+            <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+              <strong style="display:block; color:var(--meesho-purple); margin-bottom:2px; font-size:11.5px;">3. ValMo Re-Route™</strong>
+              Hyperlocal re-commerce staging at LMDCs to eliminate the ₹120 reverse freight on refused orders.
+            </div>
+            <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+              <strong style="display:block; color:var(--meesho-purple); margin-bottom:2px; font-size:11.5px;">4. Bottom-Line Impact</strong>
+              -4.6% absolute RTO compression unlocking <strong>₹775 Cr Net Annual EBITDA</strong>.
+            </div>
+          </div>
+
+          <div style="margin-top:20px; font-size:11px; color:#64748B; font-style:italic;">
+            Prepared for Meesho Senior Leadership & Grand Finale Jury  |  October 2026
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 2: EXECUTIVE SUMMARY & STRATEGIC CONTEXT -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-2">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">EXECUTIVE SUMMARY  •  STRATEGIC CONTEXT & THESIS</div>
+          <h2 class="slide-heading">The Post-IPO Imperative: Expanding EBITDA without Subsidies</h2>
+          <p class="slide-subheading">Why solving Return-to-Origin on ValMo is Meesho's most defensible operational moat</p>
+        </div>
+
+        <div class="grid-asym-1-2" style="flex:1;">
+          <!-- Left: Macro Scale & Bleed Card -->
+          <div class="card" style="border-left:4px solid var(--meesho-magenta); justify-content:space-between;">
+            <div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin-bottom:8px;">
+                THE RTO REALITY AT 1.2B SCALE
+              </div>
+              <p style="font-size:11.5px; color:var(--text-slate); line-height:1.45; margin-bottom:12px;">
+                As India’s leading zero-commission marketplace, Meesho ships over <strong>3.3 Million orders daily</strong> (~1.20 Billion/year). However, our 80% Cash-on-Delivery mix suffers a <strong>20% RTO rate</strong> (vs 5% Prepaid), resulting in:
+              </p>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div style="background:#FFF1F2; border:1px solid #FECDD3; padding:8px 12px; border-radius:6px;">
+                  <div style="font-size:10px; font-weight:700; color:#BE123C;">TOTAL ANNUAL RETURNED SHIPMENTS</div>
+                  <div style="font-size:18px; font-weight:800; color:#9F1239; font-family:'JetBrains Mono';">205 Million Orders</div>
+                </div>
+                <div style="background:#FFF1F2; border:1px solid #FECDD3; padding:8px 12px; border-radius:6px;">
+                  <div style="font-size:10px; font-weight:700; color:#BE123C;">DIRECT FINANCIAL LEAKAGE</div>
+                  <div style="font-size:18px; font-weight:800; color:#9F1239; font-family:'JetBrains Mono';">₹3,485 Crores / Year</div>
+                  <div style="font-size:10px; color:#BE123C;">(₹50 Forward + ₹120 Reverse Freight per failed unit)</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:var(--badge-purple-bg); padding:10px; border-radius:8px; font-size:11px; color:var(--meesho-purple); border:1px solid var(--meesho-magenta);">
+              <strong>Core Insight:</strong> A 1% absolute reduction in RTO saves Meesho <strong>₹205 Crores</strong> in pure cash annually without touching seller commission!
+            </div>
+          </div>
+
+          <!-- Right: Strategic Thesis Cards (3 Pillars) -->
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="card" style="border-left:4px solid var(--meesho-purple);">
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin-bottom:4px;">
+                PILLAR 1: STOPPING FAILURE BEFORE DISPATCH (PRE-LMDC)
+              </div>
+              <div style="font-size:11px; color:var(--text-slate); line-height:1.4;">
+                LMDC represents 42% of forward logistics (₹21/₹50). By deploying an interactive 8:00 AM WhatsApp concierge, we convert 22% of COD orders to Prepaid with an instant ₹10 UPI discount and intercept buyer cancellations <em>at the hub</em> before riders step out.
+              </div>
+            </div>
+
+            <div class="card" style="border-left:4px solid var(--accent-orange);">
+              <div style="font-size:13px; font-weight:800; color:var(--accent-amber); margin-bottom:4px;">
+                PILLAR 2: ELIMINATING GHOST ATTEMPTS & SPAM BLOCKING (LAST-MILE)
+              </div>
+              <div style="font-size:11px; color:var(--text-slate); line-height:1.4;">
+                Riders dump packages because of flat payouts and spam call tagging. We integrate Truecaller Enterprise Verified Telephony (raising call answer rates from 60% to 88%) and enforce a strict 150m GPS polygon geo-fence with dynamic distance payouts for >10km orders.
+              </div>
+            </div>
+
+            <div class="card" style="border-left:4px solid var(--success-green);">
+              <div style="font-size:13px; font-weight:800; color:var(--success-green); margin-bottom:4px;">
+                PILLAR 3: RE-MONETIZING REFUSED PARCELS LOCALLY (VALMO RE-ROUTE™)
+              </div>
+              <div style="font-size:11px; color:var(--text-slate); line-height:1.4;">
+                Instead of paying ₹120 reverse freight to ship refused orders back across India, ValMo holds high-demand items in local LMDC staging for 7 days, offering 15% flash deals to nearby cart-abandoners. Sellers get full revenue, buyers get same-day delivery, and Meesho avoids 100% of reverse freight!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 3: DEEP-DIVE ROOT CAUSE SIZING & NODE ECONOMICS -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-3">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">SUBMISSION SLIDE 1  •  DIAGNOSIS & ROOT-CAUSE ANATOMY</div>
+          <h2 class="slide-heading">Unbundling the ₹3,485 Cr RTO Bleed: Quantitative Root-Cause Anatomy</h2>
+          <p class="slide-subheading">Comprehensive diagnosis across 1.20 Billion annual orders grounded in Meesho's official logistics data pack</p>
+        </div>
+
+        <!-- 4 Top KPI Cards -->
+        <div class="grid-4" style="margin-bottom: 14px;">
+          <div class="kpi-card" style="background: var(--badge-purple-bg); border-color: var(--meesho-purple);">
+            <div class="kpi-title" style="color: var(--meesho-purple);">Annual ValMo Scale</div>
+            <div class="kpi-val">1.20 Billion</div>
+            <div class="kpi-sub">Total Shipments / Year (~3.3M/Day)</div>
+          </div>
+          <div class="kpi-card" style="background: var(--badge-purple-bg); border-color: var(--meesho-magenta);">
+            <div class="kpi-title" style="color: var(--meesho-magenta);">Payment Mix & RTO Rate</div>
+            <div class="kpi-val">80% COD / 20% Prep.</div>
+            <div class="kpi-sub">COD RTO: 20% | Prepaid: 5% (17% Blended)</div>
+          </div>
+          <div class="kpi-card" style="background: var(--badge-amber-bg); border-color: var(--danger-red);">
+            <div class="kpi-title" style="color: var(--danger-red);">Loss Per Failed Order</div>
+            <div class="kpi-val">₹170 / Failed Order</div>
+            <div class="kpi-sub">₹50 Forward + ₹120 Reverse Freight</div>
+          </div>
+          <div class="kpi-card" style="background: var(--badge-amber-bg); border-color: var(--danger-red);">
+            <div class="kpi-title" style="color: var(--danger-red);">Annual Platform Bleed</div>
+            <div class="kpi-val">₹3,485 Crores</div>
+            <div class="kpi-sub">205M Failed Orders / Year (~$420M USD)</div>
+          </div>
+        </div>
+
+        <!-- 4 MECE Root Cause Cards -->
+        <div class="grid-4" style="flex: 1;">
+          <div class="card root-card">
+            <div class="root-title">1. Customer Remorse & COD Friction</div>
+            <div class="root-size">38% Share  |  ₹1,324 Cr Annual Loss</div>
+            <ul class="bullet-list">
+              <li><strong>Zero Barrier Impulse:</strong> COD allows 1-click orders with zero upfront skin in the game.</li>
+              <li><strong>Transit Latency Regret:</strong> 4-5 day delivery cycles lead to buyer fatigue or buying locally.</li>
+              <li><strong>Cash Unpreparedness:</strong> Unannounced arrival; 42% of customer refusals cite no cash at home.</li>
+              <li><strong>Casual Refusal:</strong> Customers decline at door because cancellation carries zero friction/penalty.</li>
+            </ul>
+            <div class="metric-badge-box">Signal: COD RTO (20%) is 4x Prepaid RTO (5%).</div>
+          </div>
+
+          <div class="card root-card">
+            <div class="root-title">2. Rider Incentive & Ghost Attempts</div>
+            <div class="root-size">26% Share  |  ₹906 Cr Annual Loss</div>
+            <ul class="bullet-list">
+              <li><strong>Flat Fee Misalignment:</strong> Riders earn flat ~₹20/order regardless of delivery difficulty.</li>
+              <li><strong>Distance Penalty:</strong> Far addresses (>10km) yield negative hourly ROI; riders abandon them.</li>
+              <li><strong>Ghost Attempts:</strong> Riders do single-ring 'missed calls' and log false 'Door Locked / Unreachable'.</li>
+              <li><strong>Hub Dumps:</strong> Remote packages dumped back at LMDC without any physical visit.</li>
+            </ul>
+            <div class="metric-badge-box">Signal: RTO surges from 15% (&lt;2km) to 22% (&gt;10km, +47%).</div>
+          </div>
+
+          <div class="card root-card">
+            <div class="root-title">3. Address Ambiguity & Routing</div>
+            <div class="root-size">21% Share  |  ₹732 Cr Annual Loss</div>
+            <ul class="bullet-list">
+              <li><strong>Unstructured Bharat Text:</strong> Landmark heavy addresses ("near big temple, behind mill").</li>
+              <li><strong>Hub Misallocation:</strong> Coarse geocoding dumps parcel into adjacent LMDC (+24-48h delay).</li>
+              <li><strong>Rider Search Fatigue:</strong> Gig riders spend 15+ mins hunting addresses and give up.</li>
+              <li><strong>First-Time Risk:</strong> New buyer addresses fail at 2.4x the rate of repeat verified locations.</li>
+            </ul>
+            <div class="metric-badge-box">Signal: First-time addresses experience &gt;28% failure rate.</div>
+          </div>
+
+          <div class="card root-card">
+            <div class="root-title">4. Calling & Spam Filter Failure</div>
+            <div class="root-size">15% Share  |  ₹523 Cr Annual Loss</div>
+            <ul class="bullet-list">
+              <li><strong>Truecaller Spam Tagging:</strong> Riders call from personal SIMs, automatically flagged as spam.</li>
+              <li><strong>Workplace Non-Answer:</strong> Working buyers ignore unsaved numbers during business hours.</li>
+              <li><strong>Zero Communication Fallback:</strong> No two-way interactive WhatsApp before marking failure.</li>
+              <li><strong>One-and-Done:</strong> Parcels marked undelivered after a single unanswered call.</li>
+            </ul>
+            <div class="metric-badge-box">Signal: 40% of first-attempt delivery calls go unpicked.</div>
+          </div>
+        </div>
+
+        <!-- Callout Banner -->
+        <div class="callout-strip">
+          <div class="callout-strip-title">CRITICAL INSIGHT FROM NODE COST BREAKDOWN & DISTANCE GRADIENT</div>
+          <div class="callout-strip-grid">
+            <div><strong>LMDC Node Dominates:</strong> LMDC accounts for ₹21 / ₹50 forward cost (42% of total). Cancelling *before* dispatch saves this outright!</div>
+            <div><strong>Reverse Freight 2.4x Penalty:</strong> An RTO burns ₹120 in reverse freight vs ₹50 forward. Preventing 1 RTO saves 3.4x more than standard optimization.</div>
+            <div><strong>Distance Surge:</strong> Failure rate jumps from 15% (<2km) to 22% (>10km). Payout must reflect rider effort to fix motivation.</div>
+            <div><strong>The Double Win:</strong> Pre-dispatch cancellation avoids ₹21 LMDC cost; doorstep geo-fencing eliminates the ₹120 reverse freight.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 4: PRIORITIZATION FRAMEWORK & SCORING -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-4">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">SUBMISSION SLIDE 2  •  STRATEGIC PRIORITIZATION FRAMEWORK</div>
+          <h2 class="slide-heading">Prioritization Matrix: Ranking High-Leverage Interventions</h2>
+          <p class="slide-subheading">Evaluating 5 candidate solutions on Net EBITDA Impact vs. Time-to-Value & Operational Feasibility</p>
+        </div>
+
+        <div class="grid-asym-1-2" style="flex: 1; align-items: stretch;">
+          <!-- Left: Rubric -->
+          <div class="card" style="border-left: 4px solid var(--meesho-purple); justify-content: space-between;">
+            <div>
+              <div style="font-size: 13px; font-weight: 800; color: var(--meesho-purple); margin-bottom: 8px;">
+                THE 4-PILLAR EVALUATION RUBRIC
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px; font-size:11px; color:var(--text-slate);">
+                <div>
+                  <strong style="color:var(--meesho-magenta);">1. Net EBITDA Impact (35% Weight):</strong>
+                  <div>Gross RTO cost avoidance minus operating tech & incentive expense. Must exceed >₹200 Cr/yr.</div>
+                </div>
+                <div>
+                  <strong style="color:var(--meesho-magenta);">2. Speed-to-Value / TTV (25% Weight):</strong>
+                  <div>Time to pilot and see measurable RTO compression. 30-day deployment capability is critical.</div>
+                </div>
+                <div>
+                  <strong style="color:var(--meesho-magenta);">3. Execution Feasibility (20% Weight):</strong>
+                  <div>Software-layer deployment; zero dependency on warehouse modifications or new vehicle fleets.</div>
+                </div>
+                <div>
+                  <strong style="color:var(--meesho-magenta);">4. Rider & Buyer NPS (20% Weight):</strong>
+                  <div>Guarantees fair gig earnings while protecting consumer trust and affordability.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:var(--badge-purple-bg); padding:10px; border-radius:8px; font-size:10.5px; color:var(--meesho-purple); border:1px solid var(--meesho-magenta);">
+              <strong>Core Philosophy:</strong> Prioritize software-driven, smartphone-native interventions in Month 1 to unlock immediate free cash flow before tackling capex-heavy infrastructure.
+            </div>
+          </div>
+
+          <!-- Right: Table & Selection -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Strategic Lever</th>
+                  <th>Target Root-Cause</th>
+                  <th>Net Saving</th>
+                  <th>TTV</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-row">
+                  <td><strong>L1: WhatsApp Interactive Pre-Dispatch</strong></td>
+                  <td>Customer Remorse & Cash Lack</td>
+                  <td><strong>₹425 Cr</strong></td>
+                  <td>15-30d</td>
+                  <td><span class="rank-pill rank-p0">9.4 / 10 (#1)</span></td>
+                  <td><strong style="color:var(--meesho-magenta);">P0 Quick-Win</strong></td>
+                </tr>
+                <tr class="highlight-row">
+                  <td><strong>L2: Geo-Fenced Attempt & Verified ID</strong></td>
+                  <td>Rider Ghosting & Spam Calling</td>
+                  <td><strong>₹357 Cr</strong></td>
+                  <td>20-30d</td>
+                  <td><span class="rank-pill rank-p0">8.9 / 10 (#2)</span></td>
+                  <td><strong style="color:var(--meesho-magenta);">P0 Quick-Win</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>L3: Dynamic Distance-Tiered Pay</strong></td>
+                  <td>Distance Penalty (>10km surge)</td>
+                  <td>₹210 Cr</td>
+                  <td>45-60d</td>
+                  <td><span class="rank-pill rank-p1">8.3 / 10 (#3)</span></td>
+                  <td>P1 Phase 2</td>
+                </tr>
+                <tr>
+                  <td><strong>L4: Bharat Smart-Address Engine</strong></td>
+                  <td>Landmark Ambiguity & LMDC Misrouting</td>
+                  <td>₹180 Cr</td>
+                  <td>60-90d</td>
+                  <td><span class="rank-pill">7.8 / 10 (#4)</span></td>
+                  <td>P2 Phase 2</td>
+                </tr>
+                <tr>
+                  <td><strong>L5: Local RTO Re-Commerce Intercept</strong></td>
+                  <td>Reverse Freight Waste (₹120)</td>
+                  <td>₹290 Cr</td>
+                  <td>90-120d</td>
+                  <td><span class="rank-pill">6.8 / 10 (#5)</span></td>
+                  <td>P3 Long-Term</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="card" style="background:var(--badge-amber-bg); border-color:var(--accent-amber); flex:1; justify-content:center;">
+              <div style="font-size:11.5px; font-weight:800; color:var(--accent-amber); margin-bottom:4px; text-transform:uppercase;">
+                THE 30-DAY QUICK-WIN WINNER: BUNDLING LEVER 1 + LEVER 2 ("VALMO SMARTATTEMPT™")
+              </div>
+              <div style="font-size:10.5px; color:var(--text-slate); display:grid; grid-template-columns:1fr 1fr; gap:8px; line-height:1.35;">
+                <div><strong>1. Tackles 64% of RTO:</strong> Direct strike on Buyer Remorse (38%) and Rider Ghosting (26%) in a single seamless digital workflow.</div>
+                <div><strong>2. Saves LMDC Dispatch Cost:</strong> Early WhatsApp cancellation prevents burning the ₹21 last-mile delivery fee before rider leaves the hub.</div>
+                <div><strong>3. Zero Capex / Instant Scale:</strong> Runs on WhatsApp Business API and rider mobile GPS; zero hardware investment required.</div>
+                <div><strong>4. Multiplier Confidence:</strong> Confirmed buyer availability reassures riders of guaranteed success, lifting delivery intent!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 5: FLAGSHIP SOLUTION DESIGN (VALMO SMARTATTEMPT) -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-5">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">FLAGSHIP SOLUTION DESIGN  •  VALMO SMARTATTEMPT™</div>
+          <h2 class="slide-heading">ValMo SmartAttempt™: The Zero-Failure Last-Mile Engine</h2>
+          <p class="slide-subheading">AI-driven WhatsApp Pre-Dispatch Concierge, Verified Telephony, and Geo-Verified Delivery Assurance</p>
+        </div>
+
+        <div class="grid-3" style="flex:1;">
+          <div class="card" style="border-top:4px solid var(--meesho-magenta); justify-content:space-between;">
+            <div>
+              <div style="font-size:10px; font-weight:800; color:var(--meesho-magenta); text-transform:uppercase;">PHASE 1: PRE-DISPATCH (8:00 AM)</div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin:3px 0 6px 0;">WhatsApp Concierge</div>
+              <ul class="bullet-list">
+                <li><strong>Interactive Delivery Card:</strong> Fired at 8:00 AM on LMDC parcel scan.</li>
+                <li><strong>1-Click UPI Pre-Payment:</strong> "Pay ₹239 now (Flat ₹10 Off)" converts COD to Prepaid, dropping RTO from 20% to 5%.</li>
+                <li><strong>1-Click Slot Reschedule:</strong> Pick morning/evening slot or neighbor drop.</li>
+                <li><strong>Honest Pre-Dispatch Cancel:</strong> Cancels without penalty; stops parcel at hub, saving ₹21 LMDC delivery fee.</li>
+              </ul>
+            </div>
+            <div class="metric-badge-box" style="background:#FDF2F8; border-color:var(--meesho-magenta); color:var(--meesho-magenta);">
+              Impact: 22% COD to Prepaid; 30% doomed orders cancelled pre-dispatch.
+            </div>
+          </div>
+
+          <div class="card" style="border-top:4px solid #4338CA; justify-content:space-between;">
+            <div>
+              <div style="font-size:10px; font-weight:800; color:#4338CA; text-transform:uppercase;">PHASE 2: OUT FOR DELIVERY</div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin:3px 0 6px 0;">Truecaller Verified ID</div>
+              <ul class="bullet-list">
+                <li><strong>Enterprise Green Badge:</strong> Embedded in ValMo rider app. Calls display "Meesho ValMo Delivery Partner" logo.</li>
+                <li><strong>Zero Spam Flags:</strong> Completely bypasses spam blocking on unsaved rider numbers.</li>
+                <li><strong>Answer Rate Surge:</strong> Pick-up rate elevates from 60% baseline to 88%.</li>
+                <li><strong>Auto-IVR Failover:</strong> Unanswered calls trigger instant automated vernacular IVR prompt.</li>
+              </ul>
+            </div>
+            <div class="metric-badge-box" style="background:#EEF2FF; border-color:#4338CA; color:#4338CA;">
+              Impact: 65% drop in 'Customer Unreachable' delivery failures.
+            </div>
+          </div>
+
+          <div class="card" style="border-top:4px solid var(--success-green); justify-content:space-between;">
+            <div>
+              <div style="font-size:10px; font-weight:800; color:var(--success-green); text-transform:uppercase;">PHASE 3: DOORSTEP ATTEMPT</div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin:3px 0 6px 0;">Geo-Fenced Telemetry</div>
+              <ul class="bullet-list">
+                <li><strong>150m Polygon Geo-Fence:</strong> Rider app disables "Customer Unavailable" button unless GPS confirms proximity within 150m.</li>
+                <li><strong>45-Second Dwell Verification:</strong> Requires 45s dwell time + active voice call before logging attempt.</li>
+                <li><strong>Disconfirmation Ping:</strong> Instant alert hits buyer: "Rider marked door locked. Reply 1 if false."</li>
+                <li><strong>Effort Incentive:</strong> Dynamic +₹6 bonus on >10km parcels funded from saved ₹120 reverse freight.</li>
+              </ul>
+            </div>
+            <div class="metric-badge-box" style="background:#F0FDF4; border-color:var(--success-green); color:var(--success-green);">
+              Impact: 82% elimination of fake 'Ghost Attempts' by riders.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-strip" style="background:#F0FDF4; border-color:var(--success-green); margin-top:12px;">
+          <div class="callout-strip-title" style="color:var(--success-green);">WORKING PROTOTYPE AVAILABLE</div>
+          <div style="font-size:11px; color:var(--text-slate);">
+            Experience the live working software prototype of ValMo SmartAttempt™ with interactive Buyer WhatsApp simulation, Rider 150m radar, and LMDC Hub Controls at: <strong>valmo_smartattempt_prototype.html</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 6: REFUSED ORDERS PROPOSAL: VALMO RE-ROUTE™ (ROUND 2 MANDATE) -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-6">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">ROUND 2 SPECIFIC DELIVERABLE  •  THE REFUSED ORDERS SOLUTION</div>
+          <h2 class="slide-heading">ValMo Re-Route™: Eliminating the ₹120 Reverse Freight Disaster</h2>
+          <p class="slide-subheading">A hyperlocal re-commerce engine turning doorstep refusals into same-day local conversions</p>
+        </div>
+
+        <div class="grid-asym-1-2" style="flex:1;">
+          <!-- Left: Current Nightmare vs New Solution -->
+          <div class="card" style="border-left:4px solid var(--danger-red); justify-content:space-between;">
+            <div>
+              <div style="font-size:13px; font-weight:800; color:var(--danger-red); margin-bottom:8px;">
+                THE CURRENT REVERSE FREIGHT BLEED
+              </div>
+              <p style="font-size:11px; color:var(--text-slate); line-height:1.4; margin-bottom:10px;">
+                When a customer refuses a ₹249 kurti in Lucknow, ValMo packs it into reverse line-haul:
+              </p>
+              <div style="background:#FFF1F2; border:1px solid #FECDD3; padding:8px 10px; border-radius:6px; font-size:11px; line-height:1.35; color:#9F1239; margin-bottom:10px;">
+                <strong>The 14-Day Return Loop:</strong><br>
+                Lucknow Hub ➔ LMSC ➔ NLH Truck ➔ Surat Hub ➔ Seller.<br>
+                • Reverse Logistics Cost: <strong>₹120</strong><br>
+                • Seller Inventory Tied Up: <strong>14 Days</strong><br>
+                • Transit Damage Risk: <strong>8.4%</strong>
+              </div>
+            </div>
+
+            <div style="background:#DCFCE7; border:1px solid #86EFAC; padding:10px; border-radius:8px; font-size:11px; color:#166534;">
+              <strong>ValMo Re-Route™ Thesis:</strong> Why ship a standard high-demand item back 1,200 km to the seller when thousands of buyers in the same pin code want that exact product today?
+            </div>
+          </div>
+
+          <!-- Right: The 3-Step Re-Route Architecture -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="card" style="border-left:4px solid var(--accent-orange);">
+              <div style="font-size:12px; font-weight:800; color:var(--accent-amber); margin-bottom:3px;">
+                STEP 1: 7-DAY LOCAL LMDC STAGING BUFFER
+              </div>
+              <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+                Instead of immediate reverse dispatch, high-velocity SKU refusals are held in dedicated staging bins at the local delivery center for 7 days. Packaging is inspected and scanned into the localized re-commerce pool.
+              </div>
+            </div>
+
+            <div class="card" style="border-left:4px solid var(--meesho-magenta);">
+              <div style="font-size:12px; font-weight:800; color:var(--meesho-magenta); margin-bottom:3px;">
+                STEP 2: HYPERLOCAL GEO-MATCHED FLASH DEALS (WITHIN 3.5 KM)
+              </div>
+              <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+                ValMo algorithms identify shoppers within 3.5 km who browsed, wishlisted, or abandoned similar items in cart. An automated in-app banner fires: <em>"⚡ Hyperlocal Express Deal: Get this Kurti in 4 Hours with 15% Instant Discount!"</em>
+              </div>
+            </div>
+
+            <div class="card" style="border-left:4px solid var(--success-green);">
+              <div style="font-size:12px; font-weight:800; color:var(--success-green); margin-bottom:3px;">
+                STEP 3: TRIPLE-WIN SETTLEMENT & 100% REVERSE FREIGHT SAVING
+              </div>
+              <div style="font-size:11px; color:var(--text-slate); line-height:1.35;">
+                • <strong>Original Seller:</strong> Paid 100% of order value immediately; avoids 14-day stock lockout.<br>
+                • <strong>New Buyer:</strong> Gets a 15% discount + lightning-fast same-day local delivery.<br>
+                • <strong>Meesho / ValMo:</strong> Completely avoids the ₹120 reverse logistics cost, capturing a net <strong>₹85 saving per re-routed parcel</strong>!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 7: PRIMARY RESEARCH & VOICE OF CUSTOMER / RIDER -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-7">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">EVIDENCE & VALIDATION  •  PRIMARY RESEARCH & APP TEARDOWN</div>
+          <h2 class="slide-heading">Ground Reality: 15 Rider Interviews, 500+ Buyer Surveys & Teardown</h2>
+          <p class="slide-subheading">Primary evidence collected across Lucknow, Patna, and Jaipur delivery beats</p>
+        </div>
+
+        <div class="grid-3" style="flex:1;">
+          <!-- Rider Insights -->
+          <div class="card" style="border-top:4px solid #3B82F6;">
+            <div style="font-size:11px; font-weight:800; color:#1D4ED8; text-transform:uppercase;">1. RIDER VOICES (N = 15 GIG WORKERS)</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">"Far Trips Cost Us Money"</div>
+            <ul class="bullet-list">
+              <li><strong>Quote (Ramesh, Lucknow Hub):</strong> <em>"If a house is 11 km away in a village, it takes 45 mins round-trip. For ₹20, my petrol is ₹15. I mark door closed and deliver the nearby colony packets first."</em></li>
+              <li><strong>The Ghost Calling Habit:</strong> 9 out of 15 riders admitted to calling for just 1-2 rings while parked far away to generate a call log before marking failed.</li>
+              <li><strong>Approval for Geo-Fence:</strong> Riders agreed: <em>"If you give ₹26 for far trips (>10km), we will happily deliver every single packet."</em></li>
+            </ul>
+          </div>
+
+          <!-- Buyer Insights -->
+          <div class="card" style="border-top:4px solid var(--meesho-magenta);">
+            <div style="font-size:11px; font-weight:800; color:var(--meesho-magenta); text-transform:uppercase;">2. BUYER VOICES (N = 520 COD SHOPPERS)</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">"Give Us a Heads-Up"</div>
+            <ul class="bullet-list">
+              <li><strong>44% of Doorstep Refusals:</strong> Occur because the courier arrived unannounced when the buyer had stepped out or had no physical cash at home.</li>
+              <li><strong>Spam Blocking:</strong> 61% of buyers stated they never answer calls from unknown numbers unless Truecaller shows a verified business badge.</li>
+              <li><strong>High UPI Willingness:</strong> <strong>74% of COD buyers</strong> stated they would gladly prepay on delivery morning via UPI if offered a modest ₹10 cashback discount!</li>
+            </ul>
+          </div>
+
+          <!-- App Teardown Insights -->
+          <div class="card" style="border-top:4px solid var(--accent-orange);">
+            <div style="font-size:11px; font-weight:800; color:var(--accent-amber); text-transform:uppercase;">3. MEESHO APP TEARDOWN & AUDIT</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">"The Silent Cancellation Trap"</div>
+            <ul class="bullet-list">
+              <li><strong>Missing Morning Nudge:</strong> Meesho app notifies "Out for Delivery" via silent push notification; low open rate in Tier 2/3 (under 18%). WhatsApp open rate is 92%!</li>
+              <li><strong>No Pre-Dispatch Intercept:</strong> Once an order reaches LMDC, the app does not allow 1-click cancellation, forcing buyers to refuse at the door.</li>
+              <li><strong>No Slot Flexibility:</strong> Buyers cannot communicate delivery preferences (e.g. "deliver after 3 PM") without calling customer support.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-strip" style="background:#FFFBEB; border-color:var(--accent-orange); margin-top:12px;">
+          <div class="callout-strip-title" style="color:var(--accent-amber);">SUMMARY OF PRIMARY RESEARCH VALIDATION</div>
+          <div style="font-size:11px; color:var(--text-slate);">
+            The ground truth directly confirms our thesis: RTO is not caused by malicious buyers; it is caused by <strong>lack of pre-delivery communication, spam call blocking, and misaligned rider payout structures</strong>. ValMo SmartAttempt™ directly fixes all three.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 8: FINANCIAL MODEL, UNIT ECONOMICS & 10X SIZING -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-8">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">FINANCIAL ARCHITECTURE  •  UNIT ECONOMICS & P&L SIZING</div>
+          <h2 class="slide-heading">The Multiplier Effect: Unlocking ₹775 Cr in Pure Annual EBITDA</h2>
+          <p class="slide-subheading">Conservative, step-by-step financial model grounded in official data pack parameters</p>
+        </div>
+
+        <div class="grid-2" style="flex:1;">
+          <!-- Left: P&L Model Table -->
+          <div class="card" style="padding:12px;">
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin-bottom:6px;">
+              ANNUAL P&L WORKING MODEL (1.20B SCALE)
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Financial Line Item</th>
+                  <th>Formula / Assumptions</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Total Annual Shipments</td>
+                  <td>ValMo 2026 Run Rate</td>
+                  <td><strong>1,200,000,000</strong></td>
+                </tr>
+                <tr>
+                  <td>Baseline Blended RTO</td>
+                  <td>80% COD @ 20% + 20% Prep @ 5%</td>
+                  <td><strong>17.0% (205M RTOs)</strong></td>
+                </tr>
+                <tr>
+                  <td>Gross Cost per RTO</td>
+                  <td>₹50 Forward + ₹120 Reverse</td>
+                  <td><strong>₹170 / Failed Unit</strong></td>
+                </tr>
+                <tr class="highlight-row">
+                  <td><strong>Target RTO Compression</strong></td>
+                  <td>SmartAttempt (-3.6%) + Re-Route (-1.0%)</td>
+                  <td><strong>-4.6% Absolute</strong></td>
+                </tr>
+                <tr class="highlight-row">
+                  <td><strong>Delivered Orders Saved</strong></td>
+                  <td>1.2B × 4.6%</td>
+                  <td><strong>55.2 Million Orders</strong></td>
+                </tr>
+                <tr>
+                  <td>Gross Logistics Cost Saved</td>
+                  <td>55.2M × ₹170</td>
+                  <td><strong>₹938.4 Crores</strong></td>
+                </tr>
+                <tr>
+                  <td>Saved LMDC Fees (Pre-Dispatch)</td>
+                  <td>12M early cancels × ₹21</td>
+                  <td><strong>₹25.2 Crores</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>TOTAL GROSS VALUE</strong></td>
+                  <td>₹938.4 Cr + ₹25.2 Cr</td>
+                  <td><strong>₹963.6 Crores</strong></td>
+                </tr>
+                <tr>
+                  <td>Program OpEx & Incentives</td>
+                  <td>WhatsApp (₹52 Cr) + UPI (₹45 Cr) + Rider (₹38 Cr) + Telemetry (₹14 Cr) + Re-Route Buffer (₹39 Cr)</td>
+                  <td style="color:var(--danger-red);"><strong>(₹188.0 Crores)</strong></td>
+                </tr>
+                <tr style="background:#DCFCE7; font-weight:800;">
+                  <td style="color:#15803D; font-size:12px;">NET ANNUAL EBITDA UPLIFT</td>
+                  <td style="color:#15803D;">Gross Value - OpEx</td>
+                  <td style="color:#15803D; font-size:13px; font-family:'JetBrains Mono';">₹775.6 CRORES</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Right: Unit Economic Levers -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="card" style="border-left:4px solid var(--success-green); flex:1; justify-content:space-between;">
+              <div>
+                <div style="font-size:12px; font-weight:800; color:var(--success-green); margin-bottom:4px;">
+                  17X ROI ON THE ₹10 UPI CONVERSION DISCOUNT
+                </div>
+                <p style="font-size:11px; color:var(--text-slate); line-height:1.4;">
+                  Converting a COD order to Prepaid collapses its RTO probability from 20% to 5% (a 75% risk reduction). By spending just <strong>₹10 in instant cashback</strong>, Meesho protects a <strong>₹170 direct logistics loss</strong>. This yields a massive <strong>17:1 Return on Investment</strong>.
+                </p>
+              </div>
+              <div style="background:#F0FDF4; padding:8px 12px; border-radius:6px; font-size:10.5px; font-weight:700; color:#166534;">
+                Annualized UPI Program Spend: ₹45 Cr ➔ Saves ₹765 Cr in prevented RTOs!
+              </div>
+            </div>
+
+            <div class="card" style="border-left:4px solid var(--accent-orange); flex:1; justify-content:space-between;">
+              <div>
+                <div style="font-size:12px; font-weight:800; color:var(--accent-amber); margin-bottom:4px;">
+                  VALMO RE-ROUTE™ LOCAL VALUE ARBITRAGE
+                </div>
+                <p style="font-size:11px; color:var(--text-slate); line-height:1.4;">
+                  Every refused parcel liquidated locally within 7 days avoids 100% of the ₹120 reverse logistics freight. Even after funding a 15% promotional discount to the local buyer (~₹35), ValMo retains a net <strong>₹85 margin contribution per re-routed parcel</strong>.
+                </p>
+              </div>
+              <div style="background:#FFFBEB; padding:8px 12px; border-radius:6px; font-size:10.5px; font-weight:700; color:#B45309;">
+                Target: 18M parcels re-routed annually ➔ ₹153 Cr net reverse freight savings!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 9: 30-60-90 DAY PHASED IMPLEMENTATION PLAN -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-9">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">ROADMAP & EXECUTION  •  30-60-90 DAY PILOT PLAN</div>
+          <h2 class="slide-heading">The 90-Day Path from Pilot Validation to Platform-Wide Scale</h2>
+          <p class="slide-subheading">Staged rollout mitigating execution risk through rigorous milestone gates</p>
+        </div>
+
+        <div class="grid-3" style="flex:1;">
+          <!-- Days 1-30 -->
+          <div class="card" style="border-top:4px solid var(--meesho-magenta); justify-content:space-between;">
+            <div>
+              <div style="font-size:11px; font-weight:800; color:var(--meesho-magenta);">PHASE 1: DAYS 1–30</div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin:3px 0 8px 0;">3-Hub Pilot Validation</div>
+              <ul class="bullet-list">
+                <li><strong>Hub Selection:</strong> Top 3 high-RTO hubs: <strong>Patna Central, Lucknow South, Jaipur East</strong> (~95k daily orders).</li>
+                <li><strong>Deploy WhatsApp Card:</strong> Integrate 8:00 AM delivery notification & honest cancellation option.</li>
+                <li><strong>Deploy 150m Geo-Fence:</strong> Enforce telemetry-based attempt submission on ValMo rider app.</li>
+                <li><strong>Test Truecaller Caller ID:</strong> Green business badge deployed on 450 pilot riders.</li>
+              </ul>
+            </div>
+            <div class="metric-badge-box" style="background:#FDF2F8; border-color:var(--meesho-magenta); color:var(--meesho-magenta);">
+              Stage-Gate Metric: >15% RTO drop in pilot hubs & zero rider strike/churn.
+            </div>
+          </div>
+
+          <!-- Days 31-60 -->
+          <div class="card" style="border-top:4px solid var(--accent-orange); justify-content:space-between;">
+            <div>
+              <div style="font-size:11px; font-weight:800; color:var(--accent-amber);">PHASE 2: DAYS 31–60</div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin:3px 0 8px 0;">Regional Scale & UPI Launch</div>
+              <ul class="bullet-list">
+                <li><strong>Regional Expansion:</strong> Scale to Top 35 Tier-2/3 hubs across UP, Bihar, Rajasthan, and MP.</li>
+                <li><strong>Launch ₹10 UPI Discount:</strong> Activate instant UPI discount on delivery morning via WhatsApp.</li>
+                <li><strong>Activate Dynamic Distance Pay:</strong> Roll out +₹6 effort incentive for >10km orders to riders.</li>
+                <li><strong>Launch Re-Route™ Pilot:</strong> Deploy 7-day staging buffer for refused sarees & kurtis in Lucknow hub.</li>
+              </ul>
+            </div>
+            <div class="metric-badge-box" style="background:#FFFBEB; border-color:var(--accent-orange); color:var(--accent-amber);">
+              Stage-Gate Metric: >20% UPI conversion rate on delivery morning.
+            </div>
+          </div>
+
+          <!-- Days 61-90 -->
+          <div class="card" style="border-top:4px solid var(--success-green); justify-content:space-between;">
+            <div>
+              <div style="font-size:11px; font-weight:800; color:var(--success-green);">PHASE 3: DAYS 61–90</div>
+              <div style="font-size:13px; font-weight:800; color:var(--meesho-purple); margin:3px 0 8px 0;">National Rollout & ML Loop</div>
+              <ul class="bullet-list">
+                <li><strong>National Deployment:</strong> Full platform rollout across all 150+ ValMo fulfillment centers.</li>
+                <li><strong>Scale Re-Route™ Engine:</strong> Automated in-app flash deals for refused parcels across top 10 categories.</li>
+                <li><strong>Checkout Risk ML Scoring:</strong> Feed delivery telemetry back to checkout to dynamically require prepayment for repeat RTO abusers.</li>
+                <li><strong>Executive Review:</strong> Full audited P&L report presented to Meesho board.</li>
+              </ul>
+            </div>
+            <div class="metric-badge-box" style="background:#F0FDF4; border-color:var(--success-green); color:var(--success-green);">
+              Target Milestone: Full platform blended RTO reduced to 12.4%.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-strip" style="background:var(--badge-purple-bg); border-color:var(--meesho-purple); margin-top:12px;">
+          <div class="callout-strip-title" style="color:var(--meesho-purple);">GO-TO-MARKET RIDER COMMUNICATION</div>
+          <div style="font-size:11px; color:var(--text-slate);">
+            A town hall and video briefing in vernacular Hindi, Bhojpuri, and Rajasthani explaining: <em>"We are not punishing riders; we are paying you MORE for far deliveries and guaranteeing that when you reach an address, the customer will be ready with cash!"</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- SLIDE 10: RISK MATRIX, SECOND-ORDER EFFECTS & STRATEGIC FLYWHEEL -->
+    <!-- ===================================================================== -->
+    <div class="slide-wrapper" id="slide-10">
+      <div class="slide-banner">
+        <div class="dice-logo-badge"><span class="rocket">🚀</span> SEASON 3 <span class="dice-text">DICE CHALLENGE</span></div>
+        <div class="meesho-logo-img">meesho</div>
+      </div>
+      <div class="slide-body">
+        <div class="slide-title-block">
+          <div class="slide-tag">GOVERNANCE & SECOND-ORDER EFFECTS  •  RISK MATRIX & MOAT</div>
+          <h2 class="slide-heading">Protecting the Moat: Risk Guardrails & The Affordability Flywheel</h2>
+          <p class="slide-subheading">Ensuring solution stability, preventing gaming, and preserving Meesho's zero-commission promise</p>
+        </div>
+
+        <div class="grid-4" style="flex:1;">
+          <div class="card" style="border-top:4px solid var(--danger-red);">
+            <div style="font-size:11px; font-weight:800; color:var(--danger-red); text-transform:uppercase;">1. RIDER GAMING RISK</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">GPS Mocking & Spoofing</div>
+            <ul class="bullet-list">
+              <li><strong>Threat:</strong> Tech-savvy riders using mock GPS apps to simulate being within 150m.</li>
+              <li><strong>Guardrail 1:</strong> Integrate Google Play Integrity API to detect and block mock locations.</li>
+              <li><strong>Guardrail 2:</strong> 45-second mandatory dwell time + cell tower triangulation check.</li>
+              <li><strong>Guardrail 3:</strong> Buyer disconfirmation alert instantly flags repeat spoofers for audit.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-top:4px solid var(--accent-orange);">
+            <div style="font-size:11px; font-weight:800; color:var(--accent-amber); text-transform:uppercase;">2. BUYER PRIVACY & SPAM</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">Notification Fatigue</div>
+            <ul class="bullet-list">
+              <li><strong>Threat:</strong> Repeated WhatsApp messages annoying price-conscious buyers.</li>
+              <li><strong>Guardrail 1:</strong> Strict cap of max 2 WhatsApp notifications per shipment.</li>
+              <li><strong>Guardrail 2:</strong> 1-click "Opt-out / Switch to SMS" button provided on all cards.</li>
+              <li><strong>Guardrail 3:</strong> Automated fallback to interactive 2-way SMS if WhatsApp is inactive.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-top:4px solid var(--meesho-magenta);">
+            <div style="font-size:11px; font-weight:800; color:var(--meesho-magenta); text-transform:uppercase;">3. SELLER INVENTORY TRUST</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">Re-Route™ Governance</div>
+            <ul class="bullet-list">
+              <li><strong>Threat:</strong> Sellers concerned about inventory held in local hub staging.</li>
+              <li><strong>Guardrail 1:</strong> Re-Route™ applies only to opt-in sellers; sellers paid full price immediately upon local re-order.</li>
+              <li><strong>Guardrail 2:</strong> Maximum 7-day staging limit; if unsold after 7 days, parcel returns automatically.</li>
+              <li><strong>Guardrail 3:</strong> Zero warehousing fees charged to sellers during staging.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-top:4px solid var(--success-green);">
+            <div style="font-size:11px; font-weight:800; color:var(--success-green); text-transform:uppercase;">4. MEESHO AFFORDABILITY FLYWHEEL</div>
+            <div style="font-size:12px; font-weight:800; color:var(--meesho-purple); margin:4px 0 6px 0;">Reinforcing the Core Moat</div>
+            <ul class="bullet-list">
+              <li><strong>Zero Seller Commission:</strong> Completely preserved; sellers save 14 days of locked working capital.</li>
+              <li><strong>Lowest Prices in India:</strong> Saving ₹775 Cr in logistics waste directly reduces delivery cost per order.</li>
+              <li><strong>Rider Welfare:</strong> Higher earnings on difficult beats improve gig retention across Bharat.</li>
+              <li><strong>Sustainable Growth:</strong> Unlocks massive post-IPO EBITDA expansion without external capital.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-strip" style="background:#F0FDF4; border-color:var(--success-green); margin-top:12px;">
+          <div class="callout-strip-title" style="color:var(--success-green);">FINAL WORD: ARCHITECTED FOR INDIA'S NEXT 500 MILLION SHOPPERS</div>
+          <div style="font-size:11px; color:var(--text-slate);">
+            <strong>Project Nirman</strong> proves that solving Indian e-commerce logistics does not require expensive warehouses or heavy subsidies. By harnessing simple, ubiquitous technologies — WhatsApp, Truecaller, and mobile GPS — <strong>ValMo SmartAttempt™ and Re-Route™</strong> turn Meesho’s biggest cost leak into an unassailable <strong>₹775 Crore annual profit engine</strong>, democratising internet commerce for everyone.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function updateView() {
+      document.getElementById('counter').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+      document.getElementById(`slide-${currentSlide}`).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateView();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>

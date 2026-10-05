@@ -1,0 +1,25 @@
+# Organizers raw case PDFs and temporary assets
+DICE Challenge S3*
+temp_template_images/
+r2/
+FurryCat32_IITRoorkee.pdf
+FurryCat32_IITRoorkee.pptx
+generate_deck.py
+inspect_shapes.py
+presentation_preview.html
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
